@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+<fmt:setLocale value="${sessionScope.locale}" />
+<fmt:setBundle basename="by.htp.ex.localization.locale" var="loc" />
+
+<fmt:message bundle="${loc}" key="base.welcome" var="base_welcome" />
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
@@ -26,15 +32,14 @@
 			<div class="menu">
 
 				<c:if test="${not (sessionScope.user eq 'active')}">
-				    Welcome!!!!!
-					<%-- <c:import url=""></c:import> --%>
+				    ${base_welcome}					
 				</c:if>
 				<c:if test="${sessionScope.user eq 'active'}">
 					<c:import url="/WEB-INF/pages/tiles/menu.jsp" />
 				</c:if>
-		</div>
+			</div>
 
-		<div class="content">
+			<div class="content">
 
 				<c:if test="${not (sessionScope.user eq 'active')}">
 					<c:import url="/WEB-INF/pages/tiles/guestInfo.jsp" />
@@ -42,7 +47,6 @@
 				<c:if test="${sessionScope.user eq 'active'}">
 					<c:import url="/WEB-INF/pages/tiles/body.jsp" />
 				</c:if>
-
 
 			</div>
 		</div>
