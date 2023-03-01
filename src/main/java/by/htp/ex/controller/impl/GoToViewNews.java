@@ -13,28 +13,30 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class GoToViewNews implements Command {
-	
+
 	private final INewsService newsService = ServiceProvider.getInstance().getNewsService();
-	
+
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String lastReuestUrl = request.getContextPath() + "/controller?command=go_to_view_news";
+		request.getSession(true).setAttribute(URL, lastReuestUrl);
+
 		News news;
-		
+
 		String id;
 
-		id = request.getParameter("id");
-		
+		id = request.getParameter(ID);
+
 		try {
-			news  = newsService.findById(Integer.parseInt(id));
-			request.setAttribute("news", news);
-			request.setAttribute("presentation", "viewNews");
-
+			news = newsService.findById(Integer.parseInt(id));
+			request.setAttribute(NEWS_ATTR, news);
+			request.setAttribute(PRESENTATION_ATTR, VIEW_NEWS_VALUE);
 			request.getRequestDispatcher("WEB-INF/pages/layouts/baseLayout.jsp").forward(request, response);
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
 
+		} catch (ServiceException e) {
+			response.sendRedirect("controller?command=go_to_error_page");
+		}
+
+	}
 }

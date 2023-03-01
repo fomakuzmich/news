@@ -5,7 +5,7 @@ import java.util.List;
 import by.htp.ex.bean.News;
 
 public interface INewsService {
-  void save();
+  void save(News news);
   void find();
   void update();
   

@@ -12,26 +12,26 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class GoToBasePage implements Command{
-	
+public class GoToBasePage implements Command {
+
 	private final INewsService newsService = ServiceProvider.getInstance().getNewsService();
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+		String lastReuestUrl = request.getContextPath() + "/controller?command=go_to_base_page";
+		request.getSession(true).setAttribute(URL, lastReuestUrl);
+
 		List<News> latestNews;
 		try {
 			latestNews = newsService.latestList(5);
-			request.setAttribute("news", latestNews);
-			//request.setAttribute("news", null);
-
+			request.setAttribute(NEWS_ATTR, latestNews);
 			request.getRequestDispatcher("WEB-INF/pages/layouts/baseLayout.jsp").forward(request, response);
+
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			response.sendRedirect("controller?command=go_to_error_page");
 		}
-		
-		
+
 	}
 
 }

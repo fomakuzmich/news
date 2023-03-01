@@ -14,6 +14,7 @@ public class DoSignOut implements Command {
 
 			request.getSession(true).setAttribute("user", "not active");
 			response.sendRedirect("index.jsp");
+			
 		
 	}
 
