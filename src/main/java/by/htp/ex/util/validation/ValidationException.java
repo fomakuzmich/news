@@ -4,6 +4,8 @@ import by.htp.ex.service.ServiceException;
 
 public class ValidationException extends ServiceException {
 
+	private static final long serialVersionUID = 1L;
+
 	public ValidationException() {
 		super();
 	}

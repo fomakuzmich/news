@@ -5,15 +5,16 @@ import java.util.List;
 import by.htp.ex.bean.News;
 
 public interface INewsDAO {
-	List<News> getList() throws NewsDAOException;
+	List<News> getList() throws DaoException;
 
-	List<News> getLatestsList(int count) throws NewsDAOException;
+	List<News> getLatestsList(int count) throws DaoException;
 
-	News fetchById(int id) throws NewsDAOException;
+	News fetchById(int id) throws DaoException;
 
-	int addNews(News news) throws NewsDAOException;
+	void addNews(News news) throws DaoException;
 
-	void updateNews(News news) throws NewsDAOException;
+	void updateNews(News news) throws DaoException;
 
-	void deleteNewses(String[] idNewses) throws NewsDAOException;
+	void deleteNewses(String[] idNewses) throws DaoException;
+
 }

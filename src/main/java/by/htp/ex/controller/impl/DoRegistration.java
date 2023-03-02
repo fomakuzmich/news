@@ -1,13 +1,16 @@
 package by.htp.ex.controller.impl;
 
+import static by.htp.ex.util.constant.Parameters.*;
+import static by.htp.ex.util.constant.Atributes.*;
+import static by.htp.ex.util.constant.Pages.*;
 import java.io.IOException;
-import java.security.Security;
 
 import by.htp.ex.bean.NewUserInfo;
 import by.htp.ex.controller.Command;
 import by.htp.ex.service.IUserService;
 import by.htp.ex.service.ServiceException;
 import by.htp.ex.service.ServiceProvider;
+import by.htp.ex.util.Security;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -27,9 +30,6 @@ public class DoRegistration implements Command {
 
 		NewUserInfo info = new NewUserInfo();
 
-		info.setFirstName(request.getParameter(JSP_FIRSTNAME_PARAM));
-		info.setSurname(request.getParameter(JSP_SURNAME_PARAM));
-		info.setLogin(request.getParameter(JSP_LOGIN_PARAM));
 		info.setPassword(request.getParameter(JSP_PASSWORD_PARAM));
 		info.setEmail(request.getParameter(JSP_EMAIL_PARAM));
 

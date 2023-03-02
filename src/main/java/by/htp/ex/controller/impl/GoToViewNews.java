@@ -1,8 +1,8 @@
 package by.htp.ex.controller.impl;
 
+import static by.htp.ex.util.constant.Parameters.*;
+import static by.htp.ex.util.constant.Atributes.*;
 import java.io.IOException;
-import java.util.List;
-
 import by.htp.ex.bean.News;
 import by.htp.ex.controller.Command;
 import by.htp.ex.service.INewsService;

@@ -4,10 +4,10 @@ import by.htp.ex.bean.NewUserInfo;
 
 public interface IUserDAO {
 
-	boolean logination(String login, String password) throws DaoException;
+	NewUserInfo logination(String email, String password) throws DaoException;
 
 	boolean registration(NewUserInfo user) throws DaoException;
 
-	public String getRole(String login, String password) throws DaoException;
+	public String getRole(int id) throws DaoException;
 
 }

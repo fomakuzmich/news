@@ -12,6 +12,8 @@ import by.htp.ex.dao.DaoException;
 import by.htp.ex.dao.INewsDAO;
 import by.htp.ex.dao.NewsDAOException;
 import by.htp.ex.dao.connectionpool.ConnectionPool;
+import by.htp.ex.dao.connectionpool.ConnectionPoolException;
+import by.htp.ex.dao.connectionpool.InitPoolListener;
 
 public class NewsDAO implements INewsDAO {
 
@@ -42,16 +44,16 @@ public class NewsDAO implements INewsDAO {
 				result.add(new News(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
 						resultSet.getString(4), resultSet.getDate(5).toString(), resultSet.getInt(6)));
 			}
-		} catch (ConnectionPoolException | SQLException e) {
+		} catch (Exception e) {
 			throw new DaoException(e);
 
 		} finally {
 			if (statement != null) {
 				try {
 					connectionPool.closeConnection(connection, statement);
-					} catch (ConnectionPoolException e) {
-						throw new DaoException(e);
-					}
+				} catch (Exception e) {
+					throw new DaoException(e);
+				}
 			}
 		}
 
@@ -75,16 +77,16 @@ public class NewsDAO implements INewsDAO {
 				result.add(new News(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
 						resultSet.getString(4), resultSet.getDate(5).toString(), resultSet.getInt(6)));
 			}
-		} catch (ConnectionPoolException | SQLException e) {
+		} catch (Exception e) {
 			throw new DaoException(e);
 
 		} finally {
 			if (statement != null) {
 				try {
 					connectionPool.closeConnection(connection, statement);
-					} catch (ConnectionPoolException e) {
-						throw new DaoException(e);
-					}
+				} catch (Exception e) {
+					throw new DaoException(e);
+				}
 			}
 		}
 
@@ -110,16 +112,16 @@ public class NewsDAO implements INewsDAO {
 				news = new News(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
 						resultSet.getString(4), resultSet.getDate(5).toString(), resultSet.getInt(6));
 			}
-		} catch (ConnectionPoolException | SQLException e) {
+		} catch (Exception e) {
 			throw new DaoException(e);
 
 		} finally {
 			if (statement != null) {
 				try {
 					connectionPool.closeConnection(connection, statement);
-					} catch (ConnectionPoolException e) {
-						throw new DaoException(e);
-					}
+				} catch (Exception e) {
+					throw new DaoException(e);
+				}
 			}
 		}
 
@@ -138,20 +140,20 @@ public class NewsDAO implements INewsDAO {
 			statement.setString(1, news.getTitle());
 			statement.setString(2, news.getBriefNews());
 			statement.setString(3, news.getContent());
-			statement.setInt(4, news.getUserId());
+			statement.setInt(4, news.getIdUser());
 
 			statement.executeUpdate();
 
-		} catch (ConnectionPoolException | SQLException e) {
+		} catch (Exception e) {
 			throw new DaoException(e);
 
 		} finally {
 			if (statement != null) {
 				try {
 					connectionPool.closeConnection(connection, statement);
-					} catch (ConnectionPoolException e) {
-						throw new DaoException(e);
-					}
+				} catch (Exception e) {
+					throw new DaoException(e);
+				}
 			}
 		}
 
@@ -173,14 +175,14 @@ public class NewsDAO implements INewsDAO {
 
 			statement.executeUpdate();
 
-		} catch (ConnectionPoolException | SQLException e) {
+		} catch (Exception e) {
 			throw new DaoException(e);
 
 		} finally {
 			if (statement != null) {
 				try {
-				connectionPool.closeConnection(connection, statement);
-				} catch (ConnectionPoolException e) {
+					connectionPool.closeConnection(connection, statement);
+				} catch (Exception e) {
 					throw new DaoException(e);
 				}
 			}
@@ -204,19 +206,18 @@ public class NewsDAO implements INewsDAO {
 				statement.executeUpdate();
 			}
 
-		} catch (ConnectionPoolException | SQLException e) {
+		} catch (Exception e) {
 			throw new DaoException(e);
 
 		} finally {
 			if (statement != null) {
 				try {
 					connectionPool.closeConnection(connection, statement);
-					} catch (ConnectionPoolException e) {
-						throw new DaoException(e);
-					}
+				} catch (Exception e) {
+					throw new DaoException(e);
+				}
 			}
 		}
 
 	}
-
 }
